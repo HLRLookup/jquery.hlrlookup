@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>HLR Lookup jQuery Example</title>
+        
+        <script src="jquery.min.js"></script>
+        <script src="jquery.hlrlookup.js"></script>
+    </head>
+    <body>
+        <form id="myform" action="" method="POST">
+            <label>Phone number</label>
+            <input id="phonenumber" type="text"/>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+    <script>
+        $(document).ready( function() {
+            $('#myform').hlrlookup({
+                apikey      : 'your_api_key_here',  // replace this with your API key
+                password    : 'your_password_here', // replace this with your account password
+                msisdninput : '#phonenumber',       // this should be the identifier for the element in the form which will contain the phone number input
+                complete    : function(msg) { alert(msg); },
+                error       : function(msg) { alert(msg); }
+            });
+        })
+    </script>
+</html>
