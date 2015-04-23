@@ -23,10 +23,14 @@
                     url: 'https://www.hlrlookup.com/api/hlr/?apikey='+settings.apikey+'&password='+settings.password+'&msisdn='+msisdn,
                     success: function (msg) {
                         var json = JSON.parse(msg);
-                        if ( json.error_code == 0 ) {
-                            settings.complete.call(this,"live");
+                        if ( json.error_code == 999 ) {
+                            settings.error.call(this,"invalid format");
                         } else {
-                            settings.complete.call(this,"not live");
+                            if ( json.error_code == 0 ) {
+                                settings.complete.call(this,"live");
+                            } else {
+                                settings.complete.call(this,"not live");
+                            }
                         }
                     },
                     error: function(msg) {
